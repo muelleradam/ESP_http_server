@@ -4,22 +4,13 @@
 
 #include "class.h"
 
-String SensTemp::request_temperatures(float* result, int numSensors, DallasTemperature sensors1)
+String SensTemp::request_temperatures(float* result, int numSensors, DallasTemperature sensors)
 {
-  sensors1.requestTemperatures(); 
-//  sensors2.requestTemperatures(); 
-//  sensors3.requestTemperatures(); 
-//  for(int i=0; i<numSensors; i++)
-//  {
-//    result[i] = i;
-//  }
-
-//  result[2] = sensors1.getTempCByIndex(0);
-  result[0] = sensors1.getTempCByIndex(0);
-  result[1] = sensors1.getTempCByIndex(1);
-  result[2] = sensors1.getTempCByIndex(2);
-  result[3] = sensors1.getTempCByIndex(3);
-  result[4] = sensors1.getTempCByIndex(4);
+  sensors.requestTemperatures(); 
+  for(int i=0; i<numSensors; i++)
+  {
+    result[i] = sensors.getTempCByIndex(i);
+  }
 
   return SensTemp::concat_result(result, numSensors);
 }
